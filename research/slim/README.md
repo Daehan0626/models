@@ -533,3 +533,58 @@ image_preprocessing_fn = preprocessing_factory.get_preprocessing(
 
 See
 [Hardware Specifications](https://github.com/tensorflow/models/tree/master/research/inception#what-hardware-specification-are-these-hyper-parameters-targeted-for).
+
+#Fine tuning to a new task 
+
+## 마지막 layer만
+### python train_image_classifier.py \
+    --train_dir=/download \
+    --dataset_dir=/tmp/flowers \
+    --dataset_name=flowers \
+    --dataset_split_name=train \
+    --model_name=inception_v3 \
+    --checkpoint_path=/checkpoints/inception_v3.ckpt \
+    --checkpoint_exclude_scopes=InceptionV3/Logits \
+    --trainable_scopes=InceptionV3/Logits \
+
+    --max_number_of_steps=1000 \
+
+    --batch_size=16 \
+
+    --learning_rate=0.01 \
+
+    --learning_rate_decay_type=fixed \
+
+    --save_interval_secs=60 \
+
+    --log_every_n_steps_secs=60 \
+
+    --optimizer=rmsprop \
+
+    --weight_decay=0.00004
+##전체 layer 학습
+###python train_image_classifier.py \
+    --train_dir=/tmp/flowers3_logs \
+    --dataset_dir=/tmp/flowers \
+    --dataset_name=flowers \
+    --dataset_split_name=train \
+    --model_name=inception_v3 \
+    --checkpoint_path=/tmp/flowers2_logs \
+
+    --max_number_of_steps=500 \
+
+    --batch_size=16 \
+
+    --learning_rate=0.0001 \
+
+    --learning_rate_decay_type=fixed \
+
+    --save_summaries_secs=60 \
+
+    --save_interval_secs=60 \
+
+    --log_every_n_steps=10 \
+
+    --optimizer=rmsprop \
+
+    --weight_decay=0.00004
