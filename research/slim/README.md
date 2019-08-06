@@ -534,7 +534,9 @@ image_preprocessing_fn = preprocessing_factory.get_preprocessing(
 See
 [Hardware Specifications](https://github.com/tensorflow/models/tree/master/research/inception#what-hardware-specification-are-these-hyper-parameters-targeted-for).
 
-#Fine tuning to a new task 
+
+
+# Fine tuning to a new task 
 
 ## 마지막 layer만
 ### python train_image_classifier.py \
@@ -562,8 +564,9 @@ See
     --optimizer=rmsprop \
 
     --weight_decay=0.00004
-##전체 layer 학습
-###python train_image_classifier.py \
+    
+## 전체 layer 학습
+### python train_image_classifier.py \
     --train_dir=/tmp/flowers3_logs \
     --dataset_dir=/tmp/flowers \
     --dataset_name=flowers \
@@ -588,3 +591,25 @@ See
     --optimizer=rmsprop \
 
     --weight_decay=0.00004
+    
+# Evaluating performance
+
+## 처음부터 training한 모델
+
+### python eval_image_classifier.py \
+    --alsologtostderr \
+    --checkpoint_path=/tmp/flowers_logs \
+    --dataset_dir=/tmp/flowers \
+    --dataset_name=flowers \
+    --dataset_split_name=validation \
+    --model_name=inception_v1
+    
+## pre-training한 모델로부터 last layer만 
+### python eval_image_classifier.py \
+    --alsologtostderr \
+    --checkpoint_path=/tmp/flowers2_logs \
+    --dataset_dir=/tmp/flowers \
+    --dataset_name=flowers \
+    --dataset_split_name=validation \
+    --model_name=inception_v1
+
