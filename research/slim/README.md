@@ -539,7 +539,7 @@ See
 # Fine tuning to a new task 
 
 ## 마지막 layer만
-### python train_image_classifier.py \
+    python train_image_classifier.py \
     --train_dir=/download \
     --dataset_dir=/tmp/flowers \
     --dataset_name=flowers \
@@ -566,7 +566,7 @@ See
     --weight_decay=0.00004
     
 ## 전체 layer 학습
-### python train_image_classifier.py \
+    python train_image_classifier.py \
     --train_dir=/tmp/flowers3_logs \
     --dataset_dir=/tmp/flowers \
     --dataset_name=flowers \
@@ -596,7 +596,7 @@ See
 
 ## 처음부터 training한 모델
 
-### python eval_image_classifier.py \
+    python eval_image_classifier.py \
     --alsologtostderr \
     --checkpoint_path=/tmp/flowers_logs \
     --dataset_dir=/tmp/flowers \
@@ -605,7 +605,7 @@ See
     --model_name=inception_v1
     
 ## pre-training한 모델로부터 last layer만 
-### python eval_image_classifier.py \
+    python eval_image_classifier.py \
     --alsologtostderr \
     --checkpoint_path=/tmp/flowers2_logs \
     --dataset_dir=/tmp/flowers \
